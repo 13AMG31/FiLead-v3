@@ -1,0 +1,32 @@
+kind = "web"
+previewPath = "/"
+title = "Fi.Lead"
+description = "MVP Next.js de fidelización y menú digital para cafeterías, con modo demo local sin base de datos."
+version = "1.0.0"
+id = "artifacts/smartlink-hub"
+router = "path"
+
+[[services]]
+name = "web"
+paths = ["/", "/_next"]
+localPort = 20094
+
+[services.development]
+run = "pnpm --filter @workspace/fi-lead run dev"
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/fi-lead", "run", "build"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+
+[services.production.run]
+args = ["pnpm", "--filter", "@workspace/fi-lead", "run", "start"]
+
+[services.production.run.env]
+PORT = "20094"
+NODE_ENV = "production"
+
+[services.env]
+PORT = "20094"
+BASE_PATH = "/"
